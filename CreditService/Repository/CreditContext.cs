@@ -1,12 +1,20 @@
 ﻿using CreditService.Model;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace CreditService.Repository
 {
     public class CreditContext : DbContext
     {
-        public CreditContext() : base("CreditContext")
+        // public CreditContext() : base("CreditContext")
+        // {
+        // }
+
+        public CreditContext(DbContextOptions options)
+            : base(options)
         {
+
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
