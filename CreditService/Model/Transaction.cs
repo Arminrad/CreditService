@@ -1,15 +1,11 @@
-﻿namespace CreditService.Model
-{
-    public class Transaction
-    {
-        private int id;
-        private int customerId;
-        private int employerAccountId;
-        private DateTime transactionDate;
+﻿using CreditService.Model.BaseEntity;
 
-        public int Id { get { return id; } set { id = value; } }
-        public int CustomerId { get { return customerId; } set { customerId = value; } }
-        public int EmployerAccountId { get { return employerAccountId; } set { employerAccountId = value; } }
+namespace CreditService.Model
+{
+    public class Transaction : IBaseEntity
+    {
+        public int CustomerId { get; set; }
+        public int EmployerAccountId { get; set; }
         public DateTime TransactionDate = DateTime.Now;
     }
 }

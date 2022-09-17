@@ -2,10 +2,10 @@
 {
     public interface GenericService<T1, T2>
     {
-        T1 GetById(T2 id);
+        T1 GetById(CancellationToken cancellationToken, T2 id);
         List<T1> GetAll();
-        T2 Insert(T1 t);
-        T2 Update(T1 t);
-        T2 Delete(T1 t);
+        void Insert(T1 t, CancellationToken cancellationToken);
+        void Update(T1 t, CancellationToken cancellationToken);
+        void Delete(T1 t, CancellationToken cancellationToken);
     }
 }

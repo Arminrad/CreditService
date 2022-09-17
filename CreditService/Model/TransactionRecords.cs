@@ -1,17 +1,12 @@
-﻿namespace CreditService.Model
-{
-    public class TransactionRecords
-    {
-        private int id;
-        private int userId;
-        private decimal amount;
-        private bool isDeposit;
-        private DateTime transactionTime;
+﻿using CreditService.Model.BaseEntity;
 
-        public int Id { get { return id; } set { id = value; } }
-        public int UserId { get { return userId; } set { userId = value; } }
-        public decimal Amount { get { return amount; } set { amount = value; } }
-        public bool IsDeposit { get { return isDeposit; } set { isDeposit = value; } }
+namespace CreditService.Model
+{
+    public class TransactionRecords : IBaseEntity
+    {
+        public int UserId { get; set; }
+        public decimal Amount { get; set; }
+        public bool IsDeposit { get; set; }
         public DateTime TransactionTime = DateTime.Now;
     }
 }

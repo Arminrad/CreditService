@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 
-namespace CreditService.Repository
+namespace CreditService.Common.Connection
 {
     public class CreditContext : DbContext
     {

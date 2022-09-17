@@ -5,16 +5,16 @@ namespace CreditService.Service
 {
     public class AccountService : GenericService<Account, int>
     {
-        // private readonly AccountRepository _accountRepository;
-        //
-        // public AccountService(AccountRepository accountRepository)
-        // {
-        //     _accountRepository = accountRepository;
-        // }
+        private readonly IAccountRepository _accountRepository;
 
-        public int Delete(Account t)
+        public AccountService(IAccountRepository accountRepository)
         {
-            throw new NotImplementedException();
+            _accountRepository = accountRepository;
+        }
+
+        public async void Delete(Account t, CancellationToken cancellationToken)
+        {
+            await _accountRepository.DeleteAsync(t, cancellationToken);
         }
 
         public List<Account> GetAll()
@@ -22,17 +22,17 @@ namespace CreditService.Service
             throw new NotImplementedException();
         }
 
-        public Account GetById(int id)
+        public Account GetById(CancellationToken cancellationToken, int id)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(Account t)
+        public void Insert(Account t, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public int Update(Account t)
+        public void Update(Account t, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

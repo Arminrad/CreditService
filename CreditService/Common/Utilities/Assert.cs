@@ -11,14 +11,6 @@ namespace CreditService.Common.Utilities
                 throw new ArgumentNullException($"{name} : {typeof(T)}" , message);
         }
 
-        public static void NotNull<T>(T? obj, string name, string message = null)
-            where T : struct
-        {
-            if (!obj.HasValue)
-                throw new ArgumentNullException($"{name} : {typeof(T)}", message);
-
-        }
-
         public static void NotEmpty<T>(T obj, string name, string message = null, T defaultValue = null)
             where T : class
         {

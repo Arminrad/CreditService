@@ -1,12 +1,10 @@
-﻿namespace CreditService.Model
-{
-    public class Account
-    {
-        private int id;
-        private decimal balance;
+﻿using CreditService.Model.BaseEntity;
 
-        public int Id { get { return id; } set { id = value; } }
-        public decimal Balance { get { return balance; } set { balance = value; } }
+namespace CreditService.Model
+{
+    public class Account : IBaseEntity
+    {
+        public decimal Balance { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

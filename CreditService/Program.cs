@@ -1,4 +1,6 @@
+using CreditService.Common.Connection;
 using CreditService.Repository;
+using CreditService.Repository.RepositoryImplementation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,10 @@ builder.Services.AddDbContext<CreditContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
+
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionRecordsRepository, TransactionRecordsRepository>();
 
 var app = builder.Build();
 
