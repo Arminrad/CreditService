@@ -5,12 +5,12 @@ namespace CreditService.Service
 {
     public class AccountService : GenericService<Account, int>
     {
-        private readonly AccountRepository _accountRepository;
-
-        public AccountService(AccountRepository accountRepository)
-        {
-            _accountRepository = accountRepository;
-        }
+        // private readonly AccountRepository _accountRepository;
+        //
+        // public AccountService(AccountRepository accountRepository)
+        // {
+        //     _accountRepository = accountRepository;
+        // }
 
         public int Delete(Account t)
         {
