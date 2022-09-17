@@ -2,14 +2,9 @@
 {
     public class Transaction
     {
-        private int id;
-        private int customerId;
-        private int employerAccountId;
-        private DateTime transactionDate;
-
-        public int Id { get { return id; } set { id = value; } }
-        public int CustomerId { get { return customerId; } set { customerId = value; } }
-        public int EmployerAccountId { get { return employerAccountId; } set { employerAccountId = value; } }
+        public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public int EmployerAccountId { get; set; }
         public DateTime TransactionDate = DateTime.Now;
     }
 }
