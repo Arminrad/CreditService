@@ -1,4 +1,4 @@
-﻿namespace CreditService.Model.BaseEntity
+﻿namespace Model.Base
 {
 
     public abstract class BaseEntity<TKey> : IBaseEntity

@@ -17,7 +17,7 @@ namespace CreditService.Service
             await _accountRepository.DeleteAsync(t, cancellationToken);
         }
 
-        public List<Account> GetAll()
+        public  List<Account> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace CreditService.Service
 
         public void Insert(Account t, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _accountRepository.AddAsync(t, cancellationToken);
         }
 
         public void Update(Account t, CancellationToken cancellationToken)

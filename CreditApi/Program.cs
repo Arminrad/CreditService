@@ -1,7 +1,8 @@
-using CreditService.Common.Connection;
-using CreditService.Repository;
-using CreditService.Repository.RepositoryImplementation;
 using Microsoft.EntityFrameworkCore;
+using Repository;
+using Repository.Connection;
+using Repository.RepositoryImplementation;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,10 @@ builder.Services.AddDbContext<CreditContext>(options =>
 
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-builder.Services.AddScoped<ITransactionRecordsRepository, TransactionRecordsRepository>();
-
+builder.Services.AddScoped<IAccountService, AccountService>();
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

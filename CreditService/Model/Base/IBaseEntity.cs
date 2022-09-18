@@ -1,6 +1,7 @@
-﻿namespace CreditService.Model.BaseEntity
+﻿namespace CreditService.Model.Base
 {
     public interface IBaseEntity
     {
+      
     }
 }

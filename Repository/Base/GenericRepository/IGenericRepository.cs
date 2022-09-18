@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
-using CreditService.Model.Base;
+using Model.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace CreditService.Repository.Base.GenericRepository
+namespace Repository.Base.GenericRepository
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IBaseEntity
     {

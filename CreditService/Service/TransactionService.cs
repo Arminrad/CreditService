@@ -28,5 +28,25 @@ namespace CreditService.Service
         {
             throw new NotImplementedException();
         }
+
+        void GenericService<Transaction, int>.Delete(Transaction t, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        Transaction GenericService<Transaction, int>.GetById(CancellationToken cancellationToken, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void GenericService<Transaction, int>.Insert(Transaction t, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        void GenericService<Transaction, int>.Update(Transaction t, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

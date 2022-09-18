@@ -1,10 +1,13 @@
-﻿using CreditService.Common.Connection;
-using CreditService.Common.Utilities;
-using CreditService.Model.Base;
-using CreditService.Repository.Base.GenericRepository;
-using Microsoft.EntityFrameworkCore;
+﻿
 
-namespace CreditService.Repository.Base.GenericRepositoryImplementation
+
+using Common.Utilities;
+using Repository.Base.GenericRepository;
+using Microsoft.EntityFrameworkCore;
+using Model.Base;
+using Repository.Connection;
+
+namespace Repository.Base.GenericRepositoryImplementation
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity>
         where TEntity : class, IBaseEntity
