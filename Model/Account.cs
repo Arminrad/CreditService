@@ -1,7 +1,8 @@
-﻿using CreditService.Model.Base;
+﻿using Model;
+using Model.Base;
 
 
-namespace CreditService.Model
+namespace Model
 {
     public class Account : BaseEntity
     {

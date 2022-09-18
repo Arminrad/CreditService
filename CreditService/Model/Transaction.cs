@@ -1,10 +1,13 @@
-﻿namespace CreditService.Model
+﻿using CreditService.Model.Base;
+
+namespace CreditService.Model
 {
-    public class Transaction
+    public class Transaction : BaseEntity
     {
-        public int Id { get; set; }
-        public int CustomerId { get; set; }
-        public int EmployerAccountId { get; set; }
-        public DateTime TransactionDate = DateTime.Now;
+        public int AccountId { get; set; }
+        public decimal Amount { get; set; }
+
     }
+
+
 }

@@ -1,9 +1,9 @@
-﻿using CreditService.Model;
+﻿using Model;
 using Microsoft.EntityFrameworkCore;
 
 
 
-namespace CreditService.Repository
+namespace Repository.Connection
 {
     public class CreditContext : DbContext
     {
@@ -19,6 +19,5 @@ namespace CreditService.Repository
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
-        public virtual DbSet<TransactionRecords> TransactionRecords { get; set; }
     }
 }
