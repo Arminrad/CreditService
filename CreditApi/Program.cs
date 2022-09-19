@@ -1,12 +1,31 @@
+using System.Xml.Serialization;
 using Microsoft.EntityFrameworkCore;
+
 using Repository;
 using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Services;
+using Common.Utilities;
+using Log4netWebapi.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//nlog
+// var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+// builder.Logging.ClearProviders();
+// builder.Host.UseNLog();
+
+//log4net
+builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Logging.AddLog4Net("log4net.config");
+
+
+
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,6 +49,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+var lf = app.Services.GetRequiredService<ILoggerFactory>();
+app.ConfigureBuildInExceptionHandler(lf);
+
 
 app.UseHttpsRedirection();
 
