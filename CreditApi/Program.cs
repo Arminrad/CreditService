@@ -21,6 +21,9 @@ var builder = WebApplication.CreateBuilder(args);
 //log4net
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 builder.Logging.AddLog4Net("log4net.config");
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddControllersWithViews();
 
 
 

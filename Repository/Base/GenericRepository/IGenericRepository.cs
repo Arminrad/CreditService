@@ -13,6 +13,7 @@ namespace Repository.Base.GenericRepository
         Task AddAsync(TEntity entity, CancellationToken cancellationToken);
         Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
         Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids);
+        Task<TEntity> GetbyIdAsyncTask(object id, CancellationToken cancellationToken);
         Task UpdateAsync(TEntity entity, CancellationToken cancellationToken);
     }
 }

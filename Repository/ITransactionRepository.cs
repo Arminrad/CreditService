@@ -3,7 +3,7 @@ using Repository.Base.GenericRepository;
 
 namespace Repository
 {
-    public interface ITransactionRepository : IGenericRepository<Transaction>
+    public interface ITransactionRepository : IGenericRepository<AccountTransaction>
     {
     }
 }
