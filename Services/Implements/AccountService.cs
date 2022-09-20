@@ -37,7 +37,7 @@ namespace Services
 
         public async Task<ActionResponse> IncreaseBalanceAsync(int userId,decimal amount,CancellationToken cancellationToken)
         {
-           var account = await _accountRepository.GetbyIdAsyncTask(userId, cancellationToken);
+            var account = await _accountRepository.GetByUserIdAsync(userId, cancellationToken);
            Assert.NotNull(account, nameof(Account));
            account.Balance += amount;
            return new ActionResponse(true, ActionResultStatusCode.Success);
@@ -45,7 +45,7 @@ namespace Services
 
         public async Task<ActionResponse> DecreaseBalanceAsync(int userId, decimal amount, CancellationToken cancellationToken)
         {
-            var account = await _accountRepository.GetbyIdAsyncTask(userId, cancellationToken);
+            var account = await _accountRepository.GetByUserIdAsync(userId, cancellationToken);
             Assert.NotNull(account, nameof(Account));
             if (account.Balance < amount)
             {

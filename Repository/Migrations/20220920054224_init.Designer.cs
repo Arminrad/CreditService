@@ -12,8 +12,8 @@ using Repository.Connection;
 namespace Repository.Migrations
 {
     [DbContext(typeof(CreditContext))]
-    [Migration("20220920041255_transactionRenamedToAccountTransaction")]
-    partial class transactionRenamedToAccountTransaction
+    [Migration("20220920054224_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,7 +51,7 @@ namespace Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AccountId")
+                    b.Property<int?>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
@@ -62,6 +62,9 @@ namespace Repository.Migrations
 
                     b.Property<short>("TransactionType")
                         .HasColumnType("smallint");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -74,9 +77,7 @@ namespace Repository.Migrations
                 {
                     b.HasOne("Model.Account", null)
                         .WithMany("Transactions")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("Model.Account", b =>

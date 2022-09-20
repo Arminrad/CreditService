@@ -6,6 +6,7 @@ using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Services;
 using Common.Utilities;
+using CreditService.Repository.RepositoryImplementation;
 using Log4netWebapi.Extensions;
 
 
@@ -42,6 +43,10 @@ builder.Services.AddDbContext<CreditContext>(options =>
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<TransactionService, TransactionService>();
+
+
 var app = builder.Build();
 
 
