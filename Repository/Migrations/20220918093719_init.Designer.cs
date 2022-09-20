@@ -43,7 +43,7 @@ namespace Repository.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("Model.Transaction", b =>
+            modelBuilder.Entity("Model.AccountTransaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Repository.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("Model.Transaction", b =>
+            modelBuilder.Entity("Model.AccountTransaction", b =>
                 {
                     b.HasOne("Model.Account", null)
                         .WithMany("Transactions")

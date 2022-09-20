@@ -3,7 +3,7 @@ using Model.Base;
 
 namespace Model
 {
-    public class Transaction : BaseEntity
+    public class AccountTransaction : BaseEntity
     {
         public int AccountId { get; set; }
         public decimal Amount { get; set; }

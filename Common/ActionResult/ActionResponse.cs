@@ -1,5 +1,7 @@
 ﻿using Common.Utilities;
-namespace CreditService.Model.ApiResults
+
+
+namespace Common.ActionResult
 {
     public class ActionResponse
     {
