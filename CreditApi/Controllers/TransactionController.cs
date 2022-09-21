@@ -11,7 +11,7 @@ namespace CreditApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class TransactionController : ControllerBase
-    {
+    { 
 
         private readonly ILogger<TransactionController> _logger;
         private readonly ITransactionService _transactionService;
