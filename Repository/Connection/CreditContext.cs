@@ -19,5 +19,6 @@ namespace Repository.Connection
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountTransaction> Transactions { get; set; }
+        public virtual DbSet<Caller> callers { get; set; }
     }
 }

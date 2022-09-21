@@ -44,7 +44,8 @@ namespace CreditApi.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResponse> ReturnAsync(TransactionDto transactionDto, CancellationToken cancellationToken)
+        [ServiceFilter(typeof(CallerIdAuthorization))]
+        public async Task<ActionResponse> ReturnAsync([FromHeader] Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
 
             var accountTransaction = _mapper.Map<AccountTransaction>(transactionDto);
@@ -57,7 +58,8 @@ namespace CreditApi.Controllers
 
 
         [HttpPost("[action]")]
-        public async Task<ActionResponse> WithdrawAsync(TransactionDto transactionDto, CancellationToken cancellationToken)
+        [ServiceFilter(typeof(CallerIdAuthorization))]
+        public async Task<ActionResponse> WithdrawAsync([FromHeader] Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
 
             var accountTransaction = _mapper.Map<AccountTransaction>(transactionDto);
@@ -69,7 +71,8 @@ namespace CreditApi.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<ActionResponse> BuyAsync(TransactionDto transactionDto, CancellationToken cancellationToken)
+        [ServiceFilter(typeof(CallerIdAuthorization))]
+        public async Task<ActionResponse> BuyAsync([FromHeader] Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
 
             var accountTransaction = _mapper.Map<AccountTransaction>(transactionDto);

@@ -14,7 +14,10 @@ namespace Common.ActionResult
         Insufficient = 2,
 
         [Display(Description = "This user id does exist")]
-        Exist = 3
+        Exist = 3,
+
+        [Display(Description = "The CallerId is invalid")]
+        InvalidCallerId = 4
     }
 
 }
