@@ -6,6 +6,7 @@ using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Services;
 using Common.Utilities;
+using CreditApi.Filters;
 using CreditService.Repository.RepositoryImplementation;
 using Log4netWebapi.Extensions;
 
@@ -25,6 +26,7 @@ builder.Logging.AddLog4Net("log4net.config");
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<CallerIdAuthorization>();
 
 
 

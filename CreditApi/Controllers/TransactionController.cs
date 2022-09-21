@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Common.ActionResult;
+using CreditApi.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -25,8 +26,13 @@ namespace CreditApi.Controllers
         }
 
 
+
+
+        // bug : when Account id doesnt exist in database
+
         [HttpPost("[action]")]
-        public async Task<ActionResponse> DepositAsync(TransactionDto transactionDto, CancellationToken cancellationToken)
+        [ServiceFilter(typeof(CallerIdAuthorization))]
+        public async Task<ActionResponse> DepositAsync([FromHeader]Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
 
             var accountTransaction = _mapper.Map<AccountTransaction>(transactionDto);
