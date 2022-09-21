@@ -24,7 +24,7 @@ namespace Services
 
 
 
-        public async Task<ActionResponse> CreateAccountAsync(Account account, CancellationToken cancellationToken)
+        public async Task<ActionResponse> CreateAccountAsync(Account account, CancellationToken cancellationToken = default)
         {
             if (!await _accountRepository.TableNoTracking.AnyAsync(x => x.UserId == account.UserId))
             {

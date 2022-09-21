@@ -9,31 +9,25 @@ namespace CreditApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AccountController : ControllerBase
+public class AccountController : BaseAppController
 {
     private readonly IAccountService _accountService;
-    private readonly IMapper _mapper;
 
-    public AccountController(IAccountService accountService, IMapper mapper)
+    public AccountController(IMapper mapper , ILogger<AccountController> logger , IAccountService accountService)
+    : base(mapper , logger )
     {
         _accountService = accountService;
-        _mapper = mapper;
     }
 
 
     [HttpPost]
-    public async Task<ActionResult> CreateAccount(AccountDto accountDto, CancellationToken cancellationToken)
+    public async Task<ActionResult> CreateAccount(AccountDto accountDto, CancellationToken cancellationToken = default)
     {
         var account = _mapper.Map<Account>(accountDto);
         var result = await _accountService.CreateAccountAsync(account, cancellationToken);
-        if (result.IsSuccess)
-        {
-            return Ok(result);
-        }
-        else
-        {
-            return BadRequest(result);
-        }
+        return await base.CreatedResult(result);
     }
+
+     
 }
 
