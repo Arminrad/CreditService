@@ -1,4 +1,5 @@
 ﻿using Common.ActionResult;
+using Common.CustomExceptions;
 using Repository.RepositoryImplementation;
 using Model.Entities;
 using Model.Entities.Enum;
@@ -29,17 +30,23 @@ namespace Services
             try
             {
                 await _transactionRepository.AddAsync(accountTransaction, cancellationToken);
-                await _accountService.DecreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount, cancellationToken);
+                await _accountService.DecreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount,
+                    cancellationToken);
                 await _creditContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
 
                 return new ActionResponse(true, ActionResultStatusCode.Success);
 
             }
-            catch (ArgumentNullException )
+            catch (ArgumentNullException)
             {
                 await transaction.RollbackAsync(cancellationToken);
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (InsufficientBallanceException)
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.Insufficient);
             }
             catch (Exception )
             {
@@ -69,6 +76,11 @@ namespace Services
             {
                 await transaction.RollbackAsync(cancellationToken);
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (InsufficientBallanceException)
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.Insufficient);
             }
             catch (Exception )
             {
