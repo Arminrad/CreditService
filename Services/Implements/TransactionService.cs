@@ -36,7 +36,12 @@ namespace Services
                 return new ActionResponse(true, ActionResultStatusCode.Success);
 
             }
-            catch (Exception e)
+            catch (ArgumentNullException )
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (Exception )
             {
                 await transaction.RollbackAsync(cancellationToken);
                 throw new Exception("Internal Program Error");
@@ -60,7 +65,12 @@ namespace Services
                 return new ActionResponse(true, ActionResultStatusCode.Success);
 
             }
-            catch (Exception e)
+            catch (ArgumentNullException )
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (Exception )
             {
                 await transaction.RollbackAsync(cancellationToken);
                 throw new Exception("Internal Program Error");
@@ -83,7 +93,12 @@ namespace Services
                 return new ActionResponse(true, ActionResultStatusCode.Success);
 
             }
-            catch (Exception e)
+            catch (ArgumentNullException )
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (Exception )
             {
                 await transaction.RollbackAsync(cancellationToken);
                 throw new Exception("Internal Program Error");
@@ -98,15 +113,21 @@ namespace Services
             var transaction =await _creditContext.Database.BeginTransactionAsync(cancellationToken);
             try
             {
-                
+
                 await _transactionRepository.AddAsync(accountTransaction, cancellationToken);
-                await _accountService.IncreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount, cancellationToken);
+                await _accountService.IncreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount,
+                    cancellationToken);
                 await _creditContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
 
                 return new ActionResponse(true, ActionResultStatusCode.Success);
             }
-            catch (Exception e)
+            catch (ArgumentNullException )
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+            }
+            catch (Exception )
             {
                 await transaction.RollbackAsync(cancellationToken);
                 throw new Exception("Internal Program Error");
