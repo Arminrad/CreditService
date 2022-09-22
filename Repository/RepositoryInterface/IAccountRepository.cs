@@ -1,7 +1,7 @@
-﻿using Model;
-using Repository.Base.GenericRepository;
+﻿using Model.Entities;
+using Repository.Base.GenericRepositoryInterface;
 
-namespace Repository
+namespace Repository.RepositoryInterface
 {
     public interface IAccountRepository : IGenericRepository<Account>
     {

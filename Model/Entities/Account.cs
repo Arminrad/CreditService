@@ -1,8 +1,6 @@
-﻿using Model;
-using Model.Base;
+﻿using Model.Base.Implementations;
 
-
-namespace Model
+namespace Model.Entities
 {
     public class Account : BaseEntity
     {

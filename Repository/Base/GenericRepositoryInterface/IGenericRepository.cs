@@ -1,8 +1,7 @@
-﻿using System.Linq.Expressions;
-using Model.Base;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Model.Base.Interfaces;
 
-namespace Repository.Base.GenericRepository
+namespace Repository.Base.GenericRepositoryInterface
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IBaseEntity
     {

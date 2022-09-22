@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Model;
 using Model.Dto;
+using Model.Entities;
 
 namespace CreditApi.Configuration
 {

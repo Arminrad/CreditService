@@ -2,9 +2,10 @@
 
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.EntityFrameworkCore;
-using Model;
+using Model.Entities;
 using Repository.Base.GenericRepositoryImplementation;
 using Repository.Connection;
+using Repository.RepositoryInterface;
 
 namespace Repository.RepositoryImplementation
 {
