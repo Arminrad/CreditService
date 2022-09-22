@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using Model.Entities;
 
 namespace Repository.Connection
