@@ -1,6 +1,6 @@
 ﻿using Model.Base.Implementations;
 
-namespace Model
+namespace Model.Entities
 {
     public class Caller : BaseEntity<Guid>
     {

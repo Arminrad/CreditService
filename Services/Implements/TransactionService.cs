@@ -1,5 +1,5 @@
 ﻿using Common.ActionResult;
-using CreditService.Repository.RepositoryImplementation;
+using Repository.RepositoryImplementation;
 using Model.Entities;
 using Model.Entities.Enum;
 using Repository.Connection;
