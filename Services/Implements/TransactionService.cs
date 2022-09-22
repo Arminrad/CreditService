@@ -1,8 +1,9 @@
 ﻿using Common.ActionResult;
 using CreditService.Repository.RepositoryImplementation;
-using Model;
-using Repository;
+using Model.Entities;
+using Model.Entities.Enum;
 using Repository.Connection;
+using Repository.RepositoryInterface;
 
 namespace Services
 {

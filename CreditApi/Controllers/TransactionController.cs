@@ -3,8 +3,8 @@ using Common.ActionResult;
 using CreditApi.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model;
 using Model.Dto;
+using Model.Entities;
 using Services;
 
 namespace CreditApi.Controllers

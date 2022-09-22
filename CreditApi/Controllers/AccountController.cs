@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Model.Dto;
 using Microsoft.AspNetCore.Mvc;
-using Model;
 using Model.Dto;
 using Services;
+using Model.Entities;
 
 namespace CreditApi.Controllers;
 

@@ -1,4 +1,6 @@
-﻿namespace Model.Base
+﻿using Model.Base.Interfaces;
+
+namespace Model.Base.Implementations
 {
 
     public abstract class BaseEntity<TKey> : IBaseEntity

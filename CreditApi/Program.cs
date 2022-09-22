@@ -1,7 +1,5 @@
 using System.Xml.Serialization;
 using Microsoft.EntityFrameworkCore;
-
-using Repository;
 using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Services;
@@ -9,7 +7,7 @@ using Common.Utilities;
 using CreditApi.Filters;
 using CreditService.Repository.RepositoryImplementation;
 using Log4netWebapi.Extensions;
-
+using Repository.RepositoryInterface;
 
 var builder = WebApplication.CreateBuilder(args);
 

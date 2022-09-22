@@ -1,6 +1,6 @@
-﻿namespace Model
+﻿namespace Model.Entities.Enum
 {
-    public enum TransactionType: short
+    public enum TransactionType : short
     {
         Deposit = 1,
         Withdraw = -1,

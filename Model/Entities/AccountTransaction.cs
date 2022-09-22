@@ -1,7 +1,7 @@
-﻿using Model;
-using Model.Base;
+﻿using Model.Base.Implementations;
+using Model.Entities.Enum;
 
-namespace Model
+namespace Model.Entities
 {
     public class AccountTransaction : BaseEntity
     {

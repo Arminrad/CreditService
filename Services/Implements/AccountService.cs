@@ -2,10 +2,10 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Model;
-using Repository;
 using Common.ActionResult;
 using Common.Utilities;
+using Model.Entities;
+using Repository.RepositoryInterface;
 
 namespace Services
 {

@@ -19,7 +19,6 @@ builder.Services.AddDbContext<CreditContext>(options =>
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-builder.Services.AddScoped<ITransactionRecordsRepository, TransactionRecordsRepository>();
 
 var app = builder.Build();
 

@@ -1,10 +1,7 @@
-﻿
-
-
-using Common.Utilities;
-using Repository.Base.GenericRepository;
+﻿using Common.Utilities;
 using Microsoft.EntityFrameworkCore;
-using Model.Base;
+using Model.Base.Interfaces;
+using Repository.Base.GenericRepositoryInterface;
 using Repository.Connection;
 
 namespace Repository.Base.GenericRepositoryImplementation
