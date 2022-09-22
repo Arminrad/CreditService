@@ -9,10 +9,10 @@ namespace Repository.Base.GenericRepositoryInterface
         //IQueryable<TEntity> Table { get; }
         IQueryable<TEntity> TableNoTracking { get; }
 
-        Task AddAsync(TEntity entity, CancellationToken cancellationToken);
-        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
-        Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids);
-        Task<TEntity> GetbyIdAsyncTask(object id, CancellationToken cancellationToken);
-        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+        Task AddAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default);
+        Task<TEntity> GetByIdAsync(CancellationToken cancellationToken = default, params object[] ids);
+        Task<TEntity> GetbyIdAsyncTask(object id, CancellationToken cancellationToken = default);
+        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
     }
 }
