@@ -9,8 +9,5 @@ namespace Model.Entities
         public decimal Amount { get; set; }
         public TransactionType TransactionType { get; set; }
         public DateTime DateTime { get; set; } = DateTime.Now;
-
     }
-
-
 }

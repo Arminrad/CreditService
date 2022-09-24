@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+using Model.Dto;
 using Model.Entities;
 
-namespace Model.Dto
+namespace CreditApi.MapperProfile
 {
     internal class AccountProfile : Profile
     {

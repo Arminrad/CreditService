@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Common.ActionResult;
+using Common.Clients;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Linq;
-using Common.ActionResult;
-using Common.Clients;
 using Repository.Connection;
 
 
@@ -11,7 +9,6 @@ namespace CreditApi.Filters
 {
     public class CallerIdAuthorization : IActionFilter
     {
-
         private readonly CreditContext _creditContext;
 
         public CallerIdAuthorization(CreditContext creditContext)
@@ -23,20 +20,14 @@ namespace CreditApi.Filters
         {
             var callerId = Guid.Parse(context.HttpContext.Request.Headers["callerId"]);
             var SellingModuleId = _creditContext.callers.SingleOrDefault(x => x.CallerName == CallerNames.SellingModule).Id;
-
-
-            if ( callerId != SellingModuleId )
+            if (callerId != SellingModuleId)
             {
                 context.Result = new BadRequestObjectResult(new ActionResponse(false, ActionResultStatusCode.InvalidCallerId));
             }
-           
         }
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
-           
         }
-
-     
     }
 }

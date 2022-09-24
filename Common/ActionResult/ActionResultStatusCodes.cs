@@ -22,6 +22,5 @@ namespace Common.ActionResult
         [Display(Description = "The UserId is invalid")]
         InvalidUserId = 5
     }
-
 }
 

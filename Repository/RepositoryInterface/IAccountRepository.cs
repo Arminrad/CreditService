@@ -5,7 +5,6 @@ namespace Repository.RepositoryInterface
 {
     public interface IAccountRepository : IGenericRepository<Account>
     {
-
         Task<Account> GetByUserIdAsync(int userId, CancellationToken cancellationToken);
     }
 }

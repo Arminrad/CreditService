@@ -12,7 +12,6 @@ namespace Repository.Connection
         public CreditContext(DbContextOptions options)
             : base(options)
         {
-
         }
 
         public virtual DbSet<Account> Accounts { get; set; }

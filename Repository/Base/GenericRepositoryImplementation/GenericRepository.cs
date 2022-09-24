@@ -35,21 +35,21 @@ namespace Repository.Base.GenericRepositoryImplementation
         {
             Assert.NotNull(entity, nameof(entity));
             await Entities.AddAsync(entity, cancellationToken).ConfigureAwait(false);
-            await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+            //await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         }
 
         public virtual async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
         {
             Assert.NotNull(entity, nameof(entity));
             Entities.Update(entity);
-            await DbContext.SaveChangesAsync(cancellationToken);
+            //await DbContext.SaveChangesAsync(cancellationToken);
         }
 
         public virtual async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
         {
             Assert.NotNull(entity, nameof(entity));
             Entities.Remove(entity);
-            await DbContext.SaveChangesAsync(cancellationToken);
+            //await DbContext.SaveChangesAsync(cancellationToken);
         }
         #endregion
     }

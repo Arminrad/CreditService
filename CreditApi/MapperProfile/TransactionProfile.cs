@@ -2,9 +2,9 @@
 using Model.Dto;
 using Model.Entities;
 
-namespace CreditApi.Configuration
+namespace CreditApi.MapperProfile
 {
-    public class TransactionProfile: Profile
+    public class TransactionProfile : Profile
     {
         public TransactionProfile()
         {
