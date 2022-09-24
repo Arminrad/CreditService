@@ -1,51 +1,45 @@
 ﻿using Common.ActionResult;
-
+using Common.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Common.ActionResult;
-using Common.Utilities;
 using Model.Entities;
-using Repository.RepositoryInterface;
+using Repository.UnitOfWorks;
 
 namespace Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<AccountService> _logger;
 
-
-
-        public AccountService(IAccountRepository accountRepository, ILogger<AccountService> logger)
+        public AccountService(IUnitOfWork unitOfWork, ILogger<AccountService> logger)
         {
-            _accountRepository = accountRepository;
+            _unitOfWork = unitOfWork;
             _logger = logger;
         }
 
-
-
         public async Task<ActionResponse> CreateAccountAsync(Account account, CancellationToken cancellationToken = default)
         {
-            if (!await _accountRepository.TableNoTracking.AnyAsync(x => x.UserId == account.UserId))
+            if (!await _unitOfWork.AccountRepository.TableNoTracking.AnyAsync(x => x.UserId == account.UserId))
             {
-                await _accountRepository.AddAsync(account, cancellationToken);
+                await _unitOfWork.AccountRepository.AddAsync(account, cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Created);
             }
 
             return new ActionResponse(false, ActionResultStatusCode.Exist);
         }
 
-        public async Task<ActionResponse> IncreaseBalanceAsync(int userId,decimal amount,CancellationToken cancellationToken)
+        public async Task<ActionResponse> IncreaseBalanceAsync(int userId, decimal amount, CancellationToken cancellationToken)
         {
-            var account = await _accountRepository.GetByUserIdAsync(userId, cancellationToken);
-           Assert.NotNull(account, nameof(Account));
-           account.Balance += amount;
-           return new ActionResponse(true, ActionResultStatusCode.Success);
+            var account = await _unitOfWork.AccountRepository.GetByUserIdAsync(userId, cancellationToken);
+            Assert.NotNull(account, nameof(Account));
+            account.Balance += amount;
+            return new ActionResponse(true, ActionResultStatusCode.Success);
         }
 
         public async Task<ActionResponse> DecreaseBalanceAsync(int userId, decimal amount, CancellationToken cancellationToken)
         {
-            var account = await _accountRepository.GetByUserIdAsync(userId, cancellationToken);
+            var account = await _unitOfWork.AccountRepository.GetByUserIdAsync(userId, cancellationToken);
             Assert.NotNull(account, nameof(Account));
             if (account.Balance < amount)
             {
@@ -54,6 +48,5 @@ namespace Services
             account.Balance -= amount;
             return new ActionResponse(true, ActionResultStatusCode.Success);
         }
-
     }
 }

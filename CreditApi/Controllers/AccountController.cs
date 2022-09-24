@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Model.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Model.Dto;
-using Services;
 using Model.Entities;
+using Services;
 
 namespace CreditApi.Controllers;
 
@@ -13,21 +12,17 @@ public class AccountController : BaseAppController
 {
     private readonly IAccountService _accountService;
 
-    public AccountController(IMapper mapper , ILogger<AccountController> logger , IAccountService accountService)
-    : base(mapper , logger )
+    public AccountController(IMapper mapper, ILogger<AccountController> logger, IAccountService accountService)
+    : base(mapper, logger)
     {
         _accountService = accountService;
     }
-
 
     [HttpPost]
     public async Task<ActionResult> CreateAccount(AccountDto accountDto, CancellationToken cancellationToken = default)
     {
         var account = _mapper.Map<Account>(accountDto);
         var result = await _accountService.CreateAccountAsync(account, cancellationToken);
-        return await base.CreatedResult(result);
+        return base.CreatedResult(result);
     }
-
-     
 }
-

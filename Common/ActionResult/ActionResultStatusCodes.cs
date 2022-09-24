@@ -19,6 +19,5 @@ namespace Common.ActionResult
         [Display(Description = "The CallerId is invalid")]
         InvalidCallerId = 4
     }
-
 }
 
