@@ -1,14 +1,12 @@
 using CreditApi.Filters;
-using CreditService.Repository.RepositoryImplementation;
 using Log4netWebapi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Repository.UnitOfWorks;
-using Log4netWebapi.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Repository.RepositoryInterface;
+using Repository.UnitOfWorks;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);

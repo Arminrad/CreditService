@@ -1,5 +1,4 @@
-﻿using CreditService.Repository.RepositoryImplementation;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 using Repository.Connection;
 using Repository.RepositoryImplementation;
 using Repository.RepositoryInterface;

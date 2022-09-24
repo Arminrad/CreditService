@@ -1,10 +1,8 @@
 using Common.ActionResult;
+using Common.CustomExceptions;
 using Common.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Common.ActionResult;
-using Common.CustomExceptions;
-using Common.Utilities;
 using Model.Entities;
 using Repository.UnitOfWorks;
 
@@ -26,6 +24,7 @@ namespace Services
             if (!await _unitOfWork.AccountRepository.TableNoTracking.AnyAsync(x => x.UserId == account.UserId))
             {
                 await _unitOfWork.AccountRepository.AddAsync(account, cancellationToken);
+                await _unitOfWork.SaveAsync(cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Created);
             }
 

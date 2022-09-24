@@ -18,7 +18,7 @@ namespace CreditApi.Controllers
         private readonly ITransactionService _transactionService;
         private readonly IMapper _mapper;
 
-        public TransactionController(TransactionService transactionService, ILogger<TransactionController> logger, IMapper mapper)
+        public TransactionController(ITransactionService transactionService, ILogger<TransactionController> logger, IMapper mapper)
         {
             this._logger = logger;
             this._transactionService = transactionService;
