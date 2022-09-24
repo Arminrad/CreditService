@@ -1,4 +1,6 @@
+using System.Linq.Expressions;
 using Common.ActionResult;
+using Common.Clients;
 using Common.CustomExceptions;
 using Common.Utilities;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +51,72 @@ namespace Services
             }
             account.Balance -= amount;
             return new ActionResponse(true, ActionResultStatusCode.Success);
+        }
+
+        public async Task<ActionResponse> GetBalanceAsync(Account account, CancellationToken cancellationToken)
+        {
+            if (await _unitOfWork.AccountRepository.TableNoTracking.AnyAsync(x => x.UserId == account.UserId))
+            {
+                var balance = await _unitOfWork.AccountRepository.GetBalanceAsync(account.UserId, cancellationToken);
+                return new ActionResponse<Decimal>(true, ActionResultStatusCode.Fetched, balance);
+            }
+
+            return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
+        }
+
+        public async Task<ActionResponse> IncreaseClubPointsAsync(int userId, int amount, CancellationToken cancellationToken)
+        {
+            var account = await _unitOfWork.AccountRepository.GetByUserIdAsync(userId, cancellationToken);
+            Assert.NotNull(account, nameof(Account));
+            account.Club_Points += amount;
+            return new ActionResponse(true, ActionResultStatusCode.Success);
+        }
+
+        public async Task<ActionResponse> GetAccountsByCreditAsync(Decimal minimumBalance, int pageNumber, int pageSize, CancellationToken cancellationToken)
+        {
+            var accounts = await _unitOfWork.AccountRepository.TableNoTracking
+                                                                         .Where(x => minimumBalance <= x.Balance)
+                                                                         .Skip(pageSize * (pageNumber - 1))
+                                                                         .Take(pageSize)
+                                                                         .Select(x => x.UserId)
+                                                                         .ToListAsync(cancellationToken);
+
+            if (accounts.Count() > 0)
+                return new ActionResponse<object>(true, ActionResultStatusCode.Fetched, accounts);
+            return new ActionResponse(false, ActionResultStatusCode.ListEmpty);
+        }
+
+        public async Task<ActionResponse> GetAccountsByMemberShipType(MemberShipType memberType, int pageNumber, int pageSize, CancellationToken cancellationToken)
+        {
+            var accounts =  await _unitOfWork.AccountRepository.TableNoTracking
+                                                                    .Where(_typeOf(memberType))
+                                                                    .Skip(pageSize * (pageNumber -1))
+                                                                    .Take(pageSize)
+                                                                    .Select(x => x.UserId)
+                                                                    .ToListAsync(cancellationToken);
+
+            if (accounts.Any())
+                return new ActionResponse<object>(true, ActionResultStatusCode.Fetched, accounts);
+            return new ActionResponse(false, ActionResultStatusCode.ListEmpty);
+
+        }
+
+
+        private Expression<Func<Account, bool>> _typeOf(MemberShipType type)
+        {
+            switch (type)
+            {
+                case MemberShipType.Gold:
+                    return x => x.Club_Points >= 100;
+
+                case MemberShipType.Silver:
+                    return x => x.Club_Points < 100 && x.Club_Points >= 20;
+
+                case MemberShipType.Bronze:
+                    return x => x.Club_Points < 20;
+            }
+
+            throw new Exception("MemberShip type is invalid");
         }
     }
 }

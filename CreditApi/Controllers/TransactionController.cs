@@ -24,7 +24,6 @@ namespace CreditApi.Controllers
             this._transactionService = transactionService;
             this._mapper = mapper;
         }
-        // bug : when Account id doesnt exist in database
 
         [HttpPost("[action]")]
         [MapToApiVersion("1.1")]

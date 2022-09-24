@@ -28,6 +28,7 @@ namespace Services
             try
             {
                 await _unitOfWork.TransactionRepository.AddAsync(accountTransaction, cancellationToken);
+                await _accountService.IncreaseClubPointsAsync(accountTransaction.UserId, 3, cancellationToken);
                 await _accountService.DecreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount, cancellationToken);
                 await _unitOfWork.SaveAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
@@ -111,6 +112,7 @@ namespace Services
             {
                 await _unitOfWork.TransactionRepository.AddAsync(accountTransaction, cancellationToken);
                 await _accountService.IncreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount, cancellationToken);
+                await _accountService.IncreaseClubPointsAsync(accountTransaction.UserId,(int)accountTransaction.Amount / 1000, cancellationToken);
                 await _unitOfWork.SaveAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Success);
