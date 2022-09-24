@@ -17,7 +17,10 @@ namespace Common.ActionResult
         Exist = 3,
 
         [Display(Description = "The CallerId is invalid")]
-        InvalidCallerId = 4
+        InvalidCallerId = 4,
+
+        [Display(Description = "The UserId is invalid")]
+        InvalidUserId = 5
     }
 }
 

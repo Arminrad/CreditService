@@ -1,7 +1,10 @@
-﻿using Common.ActionResult;
+using Common.ActionResult;
 using Common.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Common.ActionResult;
+using Common.CustomExceptions;
+using Common.Utilities;
 using Model.Entities;
 using Repository.UnitOfWorks;
 
@@ -43,7 +46,7 @@ namespace Services
             Assert.NotNull(account, nameof(Account));
             if (account.Balance < amount)
             {
-                return new ActionResponse(false, ActionResultStatusCode.Insufficient);
+                throw new InsufficientBallanceException();
             }
             account.Balance -= amount;
             return new ActionResponse(true, ActionResultStatusCode.Success);
