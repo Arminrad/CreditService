@@ -1,7 +1,6 @@
 using Common.ActionResult;
-using Microsoft.Extensions.Logging;
 using Common.CustomExceptions;
-using Repository.RepositoryImplementation;
+using Microsoft.Extensions.Logging;
 using Model.Entities;
 using Model.Entities.Enum;
 using Repository.UnitOfWorks;
@@ -37,16 +36,22 @@ namespace Services
             catch (ArgumentNullException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"transaction rolledBack due to invalid userId: {accountTransaction.UserId}");
+
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
             }
             catch (InsufficientBallanceException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"Transaction rolledBack due to insufficient balance userId={accountTransaction.UserId} requested amount={accountTransaction.Amount}");
+
                 return new ActionResponse(false, ActionResultStatusCode.Insufficient);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogCritical("Transaction rolledBack duo to unknown exception");
+
                 throw new Exception("Internal Program Error");
             }
         }
@@ -63,19 +68,25 @@ namespace Services
                 await transaction.CommitAsync(cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Success);
             }
-            catch (ArgumentNullException )
+            catch (ArgumentNullException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"transaction rolledBack due to invalid userId: {accountTransaction.UserId}");
+
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
             }
             catch (InsufficientBallanceException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"Transaction rolledBack due to insufficient balance userId={accountTransaction.UserId} requested amount={accountTransaction.Amount}");
+
                 return new ActionResponse(false, ActionResultStatusCode.Insufficient);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogCritical("Transaction rolledBack duo to unknown exception");
+
                 throw new Exception("Internal Program Error");
             }
         }
@@ -92,14 +103,18 @@ namespace Services
                 await transaction.CommitAsync(cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Success);
             }
-            catch (ArgumentNullException )
+            catch (ArgumentNullException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"transaction rolledBack due to invalid userId: {accountTransaction.UserId}");
+
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogCritical("Transaction rolledBack duo to unknown exception");
+
                 throw new Exception("Internal Program Error");
             }
         }
@@ -112,19 +127,23 @@ namespace Services
             {
                 await _unitOfWork.TransactionRepository.AddAsync(accountTransaction, cancellationToken);
                 await _accountService.IncreaseBalanceAsync(accountTransaction.UserId, accountTransaction.Amount, cancellationToken);
-                await _accountService.IncreaseClubPointsAsync(accountTransaction.UserId,(int)accountTransaction.Amount / 1000, cancellationToken);
+                await _accountService.IncreaseClubPointsAsync(accountTransaction.UserId, (int)accountTransaction.Amount / 1000, cancellationToken);
                 await _unitOfWork.SaveAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
                 return new ActionResponse(true, ActionResultStatusCode.Success);
             }
-            catch (ArgumentNullException )
+            catch (ArgumentNullException)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogError($"transaction rolledBack due to invalid userId: {accountTransaction.UserId}");
+
                 return new ActionResponse(false, ActionResultStatusCode.InvalidUserId);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 await transaction.RollbackAsync(cancellationToken);
+                _logger.LogCritical("Transaction rolledBack duo to unknown exception");
+
                 throw new Exception("Internal Program Error");
             }
         }

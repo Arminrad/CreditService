@@ -16,11 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Logging.ClearProviders();
 // builder.Host.UseNLog();
 //log4net
-builder.Logging.SetMinimumLevel(LogLevel.Debug);
+builder.Logging.SetMinimumLevel(LogLevel.Information);
 builder.Logging.AddLog4Net("log4net.config");
+builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
 //AutoMapper
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<CallerIdAuthorization>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
