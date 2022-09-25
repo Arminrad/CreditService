@@ -3,23 +3,24 @@ using Common.Clients;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Repository.Connection;
+using Repository.UnitOfWorks;
 
 
 namespace CreditApi.Filters
 {
     public class CallerIdAuthorization : IActionFilter
     {
-        private readonly CreditContext _creditContext;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CallerIdAuthorization(CreditContext creditContext)
+        public CallerIdAuthorization(IUnitOfWork unitOfWork)
         {
-            _creditContext = creditContext;
+            _unitOfWork = unitOfWork;
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
             var callerId = Guid.Parse(context.HttpContext.Request.Headers["callerId"]);
-            var SellingModuleId = _creditContext.callers.SingleOrDefault(x => x.CallerName == CallerNames.SellingModule).Id;
+            var SellingModuleId = _unitOfWork.CallerRepository.TableNoTracking.SingleOrDefault(x => x.CallerName == CallerNames.SellingModule).Id;
             if (callerId != SellingModuleId)
             {
                 context.Result = new BadRequestObjectResult(new ActionResponse(false, ActionResultStatusCode.InvalidCallerId));

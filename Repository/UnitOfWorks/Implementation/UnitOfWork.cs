@@ -15,6 +15,7 @@ namespace Repository.UnitOfWorks
 
         public IAccountRepository AccountRepository => new AccountRepository(_creditContext);
         public ITransactionRepository TransactionRepository => new TransactionRepository(_creditContext);
+        public ICallerRepository CallerRepository => new CallerRepository(_creditContext);
 
         public async Task<bool> SaveAsync(CancellationToken cancellationToken)
         {

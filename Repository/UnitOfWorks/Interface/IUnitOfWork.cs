@@ -7,7 +7,7 @@ namespace Repository.UnitOfWorks
     {
         IAccountRepository AccountRepository { get; }
         ITransactionRepository TransactionRepository { get; }
-
+        ICallerRepository CallerRepository { get; }
         Task<bool> SaveAsync(CancellationToken cancellationToken);
         Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken);
     }
