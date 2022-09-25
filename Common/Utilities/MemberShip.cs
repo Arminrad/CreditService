@@ -9,11 +9,15 @@ namespace Common.Utilities
 {
     public class MemberShip
     {
+        public static readonly int SilverBound = 20;
+        public static readonly int GoldBound = 100;
+
+
         public static MemberShipType GetType(int points)
         {
-            if (points < 20)
+            if (points < SilverBound)
                 return MemberShipType.Bronze;
-            else if (points < 100)
+            if (points < GoldBound)
                 return MemberShipType.Silver;
             return MemberShipType.Gold;
         }

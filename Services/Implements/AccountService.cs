@@ -107,13 +107,13 @@ namespace Services
             switch (type)
             {
                 case MemberShipType.Gold:
-                    return x => x.Club_Points >= 100;
+                    return x => x.Club_Points >= MemberShip.GoldBound;
 
                 case MemberShipType.Silver:
-                    return x => x.Club_Points < 100 && x.Club_Points >= 20;
+                    return x => x.Club_Points < MemberShip.GoldBound && x.Club_Points >= MemberShip.SilverBound;
 
                 case MemberShipType.Bronze:
-                    return x => x.Club_Points < 20;
+                    return x => x.Club_Points < MemberShip.SilverBound;
             }
 
             throw new Exception("MemberShip type is invalid");
