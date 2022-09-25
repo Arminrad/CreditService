@@ -20,7 +20,13 @@ namespace Common.ActionResult
         InvalidCallerId = 4,
 
         [Display(Description = "The UserId is invalid")]
-        InvalidUserId = 5
+        InvalidUserId = 5,
+
+        [Display(Description = "Values fetched from database")]
+        Fetched = 6,
+
+        [Display(Description = "List is Empty ")]
+        ListEmpty = 7,
     }
 }
 

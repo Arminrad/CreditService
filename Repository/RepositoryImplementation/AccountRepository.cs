@@ -17,5 +17,11 @@ namespace Repository.RepositoryImplementation
             Account account = await DbContext.Accounts.SingleOrDefaultAsync(x => x.UserId == userId);
             return account;
         }
+
+        public async Task<decimal> GetBalanceAsync(int userId, CancellationToken cancellationToken)
+        {
+            var account = await DbContext.Accounts.SingleOrDefaultAsync(x => x.UserId == userId);
+            return account.Balance;
+        }
     }
 }

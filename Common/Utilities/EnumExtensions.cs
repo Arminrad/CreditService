@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using Common.Clients;
 
 namespace Common.Utilities
 {
@@ -21,5 +22,6 @@ namespace Common.Utilities
         {
             Description
         }
+
     }
 }

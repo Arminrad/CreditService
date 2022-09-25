@@ -9,6 +9,11 @@ namespace Common.ActionResult
         public ActionResultStatusCode StatusCode { get; set; }
         public string Message { get; set; }
 
+        public ActionResponse()
+        {
+            
+        }
+
         public ActionResponse(bool isSuccess, ActionResultStatusCode status, String? message = null)
         {
             IsSuccess = isSuccess;
@@ -21,6 +26,11 @@ namespace Common.ActionResult
     public class ActionResponse<T> : ActionResponse
     {
         public T Data { get; set; }
+
+        public ActionResponse()
+        {
+                
+        }
 
         public ActionResponse(bool isSuccess, ActionResultStatusCode status, T data, String? message = null)
                 : base(isSuccess, status, message)
