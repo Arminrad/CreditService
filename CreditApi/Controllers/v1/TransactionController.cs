@@ -6,7 +6,7 @@ using Model.Dto;
 using Model.Entities;
 using Services;
 
-namespace CreditApi.Controllers
+namespace CreditApi.Controllers.v1
 {
     [ApiController]
     [Route("api/[controller]")]

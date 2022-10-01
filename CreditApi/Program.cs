@@ -1,4 +1,5 @@
 using CreditApi.Filters;
+using CreditApi.ServicesExtensions;
 using Log4netWebapi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -46,6 +47,8 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddCustomApiVersioning();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

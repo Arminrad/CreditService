@@ -5,10 +5,10 @@ using Model.Dto;
 using Model.Entities;
 using Services;
 
-namespace CreditApi.Controllers;
+namespace CreditApi.Controllers.v1;
 
-[Route("api/[controller]")]
-[ApiController]
+
+//[ApiVersion("1")]
 public class AccountController : BaseAppController
 {
     private readonly IAccountService _accountService;
