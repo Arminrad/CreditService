@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CreditApi.Controllers.v1;
 
 [ApiController]
-[ApiVersion("1")]
 [Route("api/v{version:apiVersion}/[controller]")]
-
 public class BaseAppController : ControllerBase
 {
     protected readonly IMapper _mapper;

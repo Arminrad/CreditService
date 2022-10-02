@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using WebFramework.Swagger;
 
 namespace CreditApi.ServicesExtensions.Swagger
 {
@@ -40,7 +41,7 @@ namespace CreditApi.ServicesExtensions.Swagger
                 //options.IgnoreObsoleteProperties();
 
                 options.SwaggerDoc("v1", new OpenApiInfo() { Version = "v1", Title = "CreditService V1" });
-               // options.SwaggerDoc("v2", new Info { Version = "v2", Title = "API V2" });
+                options.SwaggerDoc("v2", new OpenApiInfo() { Version = "v2", Title = "CreditService V2" });
 
                 #region Filters
                 ////Enable to use [SwaggerRequestExample] & [SwaggerResponseExample]
@@ -76,25 +77,25 @@ namespace CreditApi.ServicesExtensions.Swagger
                 //});
                 //#endregion
 
-          //      #region Versioning
-                // Remove version parameter from all Operations
-          //      options.OperationFilter<RemoveVersionParameters>();
+                #region Versioning
+               //  Remove version parameter from all Operations
+                options.OperationFilter<RemoveVersionParameters>();
 
-                //set version "api/v{version}/[controller]" from current swagger doc verion
-           //     options.DocumentFilter<SetVersionInPaths>();
+              //  set version "api/v{version}/[controller]" from current swagger doc verion
+                options.DocumentFilter<SetVersionInPaths>();
 
-                // //Seperate and categorize end-points by doc version
-                // options.DocInclusionPredicate((docName, apiDesc) =>
-                // {
-                //     if (!apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)) return false;
-                //
-                //     var versions = methodInfo.DeclaringType
-                //         .GetCustomAttributes<ApiVersionAttribute>(true)
-                //         .SelectMany(attr => attr.Versions);
-                //
-                //     return versions.Any(v => $"v{v.ToString()}" == docName);
-                // });
-                // #endregion
+                 //Seperate and categorize end-points by doc version
+                 options.DocInclusionPredicate((docName, apiDesc) =>
+                 {
+                     if (!apiDesc.TryGetMethodInfo(out MethodInfo methodInfo)) return false;
+                
+                     var versions = methodInfo.DeclaringType
+                         .GetCustomAttributes<ApiVersionAttribute>(true)
+                         .SelectMany(attr => attr.Versions);
+                
+                     return versions.Any(v => $"v{v.ToString()}" == docName);
+                 });
+                 #endregion
 
                 //If use FluentValidation then must be use this package to show validation in swagger (MicroElements.Swashbuckle.FluentValidation)
                 //options.AddFluentValidationRules();
@@ -140,7 +141,7 @@ namespace CreditApi.ServicesExtensions.Swagger
                 #endregion
 
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
-              //  options.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
+                options.SwaggerEndpoint("/swagger/v2/swagger.json", "V2 Docs");
             });
         }
     }
