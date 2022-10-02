@@ -16,11 +16,24 @@ namespace CreditApi.Controllers.v2
 
         }
 
+        /// <summary>
+        /// creates a new account for the user
+        /// </summary>
+        /// <param name="accountDto">userId for new account</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>true if created, false if userId is duplicated</returns>
         public override Task<ActionResult> CreateAccount(AccountDto accountDto, CancellationToken cancellationToken = default)
         {
             return base.CreateAccount(accountDto, cancellationToken);
         }
 
+
+        /// <summary>
+        /// get User's balance
+        /// </summary>
+        /// <param name="accountDto">User's id</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public override Task<ActionResult> GetAccountBalance(AccountDto accountDto, CancellationToken cancellationToken)
         {
             return base.GetAccountBalance(accountDto, cancellationToken);

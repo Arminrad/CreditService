@@ -17,6 +17,13 @@ namespace CreditApi.Controllers.v2
             
         }
 
+        /// <summary>
+        /// charge the wallet 
+        /// </summary>
+        /// <param name="callerId">caller's special guid id</param>
+        /// <param name="transactionDto">User's id and transaction ammount</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public override Task<ActionResult> DepositAsync(Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
             return base.DepositAsync(callerId, transactionDto, cancellationToken);
@@ -40,6 +47,13 @@ namespace CreditApi.Controllers.v2
         }
 
 
+        /// <summary>
+        /// discharge the wallet
+        /// </summary>
+        /// <param name="callerId">caller's special guid id</param>
+        /// <param name="transactionDto">User's id and transaction amount</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public override Task<ActionResult> WithdrawAsync(Guid callerId, TransactionDto transactionDto, CancellationToken cancellationToken)
         {
             return base.WithdrawAsync(callerId, transactionDto, cancellationToken);
