@@ -19,6 +19,12 @@ public class AccountController : BaseAppController
         _accountService = accountService;
     }
 
+    /// <summary>
+    /// creates a new account for the user
+    /// </summary>
+    /// <param name="accountDto">userId for new account</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>true if created, false if userId is duplicated</returns>
     [HttpPost]
     public async Task<ActionResult> CreateAccount(AccountDto accountDto, CancellationToken cancellationToken = default)
     {
@@ -27,6 +33,12 @@ public class AccountController : BaseAppController
         return base.CreatedResult(result);
     }
 
+    /// <summary>
+    /// get User's balance
+    /// </summary>
+    /// <param name="accountDto">User's id</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpGet("[Action]")]
     public async Task<ActionResult> GetAccountBalance([FromQuery] AccountDto accountDto, CancellationToken cancellationToken)
     {
@@ -35,6 +47,14 @@ public class AccountController : BaseAppController
         return CreatedResult(balance);
     }
 
+    /// <summary>
+    /// get users that have minimum balance at least
+    /// </summary>
+    /// <param name="minimumBalance"></param>
+    /// <param name="pageSize">page's length</param>
+    /// <param name="pageNumber">page number</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>list of userIds</returns>
     [HttpGet("[Action]")]
     public async Task<ActionResult> GetAccountsByCredit([FromQuery] Decimal minimumBalance, [FromQuery] int pageSize = 10, [FromQuery] int pageNumber = 1, CancellationToken cancellationToken = default)
     {
@@ -42,6 +62,14 @@ public class AccountController : BaseAppController
         return CreatedResult(accounts);
     }
 
+    /// <summary>
+    /// get all users with requested membership type
+    /// </summary>
+    /// <param name="type">gold:1 silver:2 bronze::3</param>
+    /// <param name="pageSize">page's length</param>
+    /// <param name="pageNumber">page number</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>list of userIds</returns>
     [HttpGet("[Action]")]
     public async Task<ActionResult> GetAccountsByMemberShipType([FromQuery] MemberShipType type, [FromQuery] int pageSize = 10, [FromQuery] int pageNumber = 1, CancellationToken cancellation = default)
     {
