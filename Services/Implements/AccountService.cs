@@ -76,6 +76,7 @@ namespace Services
         {
             var accounts = await _unitOfWork.AccountRepository.TableNoTracking
                                                                          .Where(x => minimumBalance <= x.Balance)
+                                                                         .OrderBy(x=> x.Balance)
                                                                          .Skip(pageSize * (pageNumber - 1))
                                                                          .Take(pageSize)
                                                                          .Select(x => x.UserId)
@@ -90,8 +91,10 @@ namespace Services
         {
             var accounts =  await _unitOfWork.AccountRepository.TableNoTracking
                                                                     .Where(_typeOf(memberType))
+                                                                    .OrderBy(x => x.Club_Points)
                                                                     .Skip(pageSize * (pageNumber -1))
                                                                     .Take(pageSize)
+                                                                    .OrderBy(x=> x.Club_Points)
                                                                     .Select(x => x.UserId)
                                                                     .ToListAsync(cancellationToken);
 
